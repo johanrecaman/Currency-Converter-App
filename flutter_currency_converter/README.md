@@ -1,4 +1,4 @@
-<h1 align="center">Currency Converter APP</h1>
+<h1 align="center">Currency Converter APP 💶</h1>
 
 <p align="center">This is a mobile project made with flutter, that convert an currency to other</p>
 <br>
@@ -34,3 +34,6 @@ Made by Johan Stromberg :fire:
 [![Twitter Badge](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/_johanrecaman_)](https://twitter.com/_johanrecaman_)
 [![Instagram Badge](https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/_johanrecaman_)
 
+<h4 align="center">
+  🚧  Work In Progress...  🚧
+</h4>
