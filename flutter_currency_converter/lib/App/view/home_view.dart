@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_currency_converter/App/components/currency_box.dart';
+import 'package:flutter_currency_converter/App/controller/home_controller.dart';
+import 'package:flutter_currency_converter/App/models/currency_model.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -9,6 +11,16 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeViewState extends State<HomeView> {
+  final TextEditingController fromText = TextEditingController();
+  final TextEditingController toText = TextEditingController();
+
+  late HomeController homeController;
+
+  void initState() {
+    super.initState();
+    homeController = HomeController(toText: fromText, fromText: toText);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +34,18 @@ class HomeViewState extends State<HomeView> {
               width: 500,
               alignment: Alignment.bottomCenter,
             ),
-            CurrencyBox(),
+            CurrencyBox(homeController.currencies, fromText, (model) {
+              setState(() {
+                homeController.toCurrency = model;
+              });
+            }, homeController.fromCurrency),
             Padding(
               padding: const EdgeInsets.only(top: 100),
-              child: CurrencyBox(),
+              child: CurrencyBox(homeController.currencies, toText, (model) {
+                setState(() {
+                  homeController.fromCurrency = model;
+                });
+              }, homeController.toCurrency),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 80),
@@ -33,7 +53,9 @@ class HomeViewState extends State<HomeView> {
                 height: 50,
                 width: 200,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      homeController.convert();
+                    },
                     child: Text('CONVERTER'),
                     style: ElevatedButton.styleFrom(primary: Colors.amber)),
               ),

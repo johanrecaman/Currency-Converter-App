@@ -1,15 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_currency_converter/App/controller/home_controller.dart';
+import 'package:flutter_currency_converter/App/models/currency_model.dart';
 
 class CurrencyBox extends StatefulWidget {
+  final List<CurrencyModel?> items;
+  final CurrencyModel? selectedItem;
+  final TextEditingController controller;
+  final void Function(CurrencyModel? model) onChanged;
+
+  CurrencyBox(this.items, this.controller, this.onChanged, this.selectedItem);
+
   @override
   State<StatefulWidget> createState() {
-    return CurrencyBoxState();
+    return CurrencyBoxState(items, controller, onChanged, selectedItem);
   }
 }
 
 class CurrencyBoxState extends State<CurrencyBox> {
   var currentValue;
+
+   CurrencyModel? selectedItem;
+  final List<CurrencyModel?> items;
+  final TextEditingController controller;
+  final void Function(CurrencyModel? model) onChanged;
+
+  CurrencyBoxState(
+      this.items, this.controller, this.onChanged, this.selectedItem);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +36,9 @@ class CurrencyBoxState extends State<CurrencyBox> {
           flex: 1,
           child: SizedBox(
             height: 65,
-            child: DropdownButton<String>(
+            child: DropdownButton<CurrencyModel>(
               isExpanded: true,
-              value: currentValue,
+              value: selectedItem,
               icon: Icon(
                 Icons.arrow_downward,
                 color: Colors.white,
@@ -32,18 +49,18 @@ class CurrencyBoxState extends State<CurrencyBox> {
                 height: 2.5,
                 color: Colors.orange,
               ),
-              items: <String>['Real ', 'Dólar ', 'Euro '].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
+              items: items.map((e) {
+                return DropdownMenuItem<CurrencyModel>(
+                  value: e,
                   child: new Text(
-                    value,
+                    e!.currencyName,
                     style: TextStyle(fontSize: 20.0),
                   ),
                 );
               }).toList(),
-              onChanged: (newValue) {
+              onChanged: (onChanged) {
                 setState(() {
-                  currentValue = newValue;
+                  selectedItem = onChanged;
                 });
               },
             ),
@@ -54,7 +71,8 @@ class CurrencyBoxState extends State<CurrencyBox> {
         ),
         Expanded(
           flex: 2,
-          child: TextField(decoration: InputDecoration()),
+          child:
+              TextField(controller: controller, decoration: InputDecoration()),
         ),
       ],
     );
