@@ -1,6 +1,7 @@
 <h1 align="center">Currency Converter APP 💶</h1>
 
 <p align="center">This is a mobile project made with flutter, that convert an currency to other</p>
+<p align="center">This app is on V2.0</p>
 <br>
 
 
@@ -12,7 +13,7 @@
 ### Features
 
 - [x] Basic Currency Options
-- [ ] Currency Converter
+- [x] Currency Converter
 - [ ] Currency API
 - [ ] Bitcoin Converter
 
@@ -27,8 +28,6 @@ The following tools have been used in the project:
 ---
 
 ### Author
-
-
 Made by Johan Stromberg :fire:
 
 [![Twitter Badge](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/_johanrecaman_)](https://twitter.com/_johanrecaman_)
