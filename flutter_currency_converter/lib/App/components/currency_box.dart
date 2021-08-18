@@ -20,7 +20,7 @@ class CurrencyBox extends StatefulWidget {
 class CurrencyBoxState extends State<CurrencyBox> {
   var currentValue;
 
-   CurrencyModel? selectedItem;
+  CurrencyModel? selectedItem;
   final List<CurrencyModel?> items;
   final TextEditingController controller;
   final void Function(CurrencyModel? model) onChanged;
@@ -58,9 +58,9 @@ class CurrencyBoxState extends State<CurrencyBox> {
                   ),
                 );
               }).toList(),
-              onChanged: (onChanged) {
+              onChanged: (e) {
                 setState(() {
-                  selectedItem = onChanged;
+                  selectedItem = e;
                 });
               },
             ),

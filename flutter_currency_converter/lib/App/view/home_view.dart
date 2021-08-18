@@ -18,7 +18,7 @@ class HomeViewState extends State<HomeView> {
 
   void initState() {
     super.initState();
-    homeController = HomeController(toText: fromText, fromText: toText);
+    homeController = HomeController(fromText: fromText, toText: toText);
   }
 
   @override
@@ -38,14 +38,14 @@ class HomeViewState extends State<HomeView> {
               setState(() {
                 homeController.toCurrency = model;
               });
-            }, homeController.fromCurrency),
+            }, homeController.toCurrency),
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: CurrencyBox(homeController.currencies, toText, (model) {
                 setState(() {
                   homeController.fromCurrency = model;
                 });
-              }, homeController.toCurrency),
+              }, homeController.fromCurrency),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 80),
@@ -54,7 +54,9 @@ class HomeViewState extends State<HomeView> {
                 width: 200,
                 child: ElevatedButton(
                     onPressed: () {
-                      homeController.convert();
+                      homeController
+                          .convert(homeController.toCurrency!.currencyName);
+                      print(homeController.toCurrency!.currencyName);
                     },
                     child: Text('CONVERTER'),
                     style: ElevatedButton.styleFrom(primary: Colors.amber)),

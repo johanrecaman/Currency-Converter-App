@@ -4,24 +4,24 @@ import 'package:flutter_currency_converter/App/models/currency_model.dart';
 class HomeController {
   late List<CurrencyModel?> currencies;
 
-  final TextEditingController toText;
   final TextEditingController fromText;
+  final TextEditingController toText;
 
   late CurrencyModel? toCurrency;
   late CurrencyModel? fromCurrency;
 
-  HomeController({required this.toText, required this.fromText}) {
+  HomeController({required this.fromText, required this.toText}) {
     currencies = CurrencyModel.getCurrencies();
     fromCurrency = currencies[0];
     toCurrency = currencies[1];
   }
 
-  void convert() {
-    String text = toText.text;
+  void convert(String currencyIndex) {
+    String text = fromText.text;
     double value = double.parse(text.replaceAll(',', '.'));
     double returnValue = 0;
 
-    switch (fromCurrency?.currencyName) {
+    switch (currencyIndex) {
       case 'Real':
         returnValue = value * fromCurrency!.real;
         break;
@@ -33,6 +33,6 @@ class HomeController {
         break;
     }
 
-    fromText.text = returnValue.toStringAsFixed(2);
+    toText.text = returnValue.toStringAsFixed(2);
   }
 }
