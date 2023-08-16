@@ -1,6 +1,6 @@
 <h1 align="center">Currency Converter APP 💶</h1>
 
-<p align="center">This is a mobile project made with flutter, that convert an currency to other</p>
+<p align="center">This is a mobile project made with flutter, to convert a currency to another</p>
 <p align="center">This app is on V2.0</p>
 <br>
 
